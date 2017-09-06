@@ -1,0 +1,76 @@
+<div class="container-fluid">
+    
+
+    <div class="main" >
+        
+        <h1 style="text-align:center;">ToDo App</h1>
+        <div class="group">      
+            <form class="formclass" (submit) ="addListItems(listitem.value)" >
+                <input type="text" #listitem >   
+            </form>
+        <span class="highlight"></span>
+        <span class="bar"></span> 
+      </div>
+<br><br>
+
+      <div class="col">
+          <div class="col-sm-6 listitem">
+              <div class="row-sm-12 listitemhead">ToDo List Items</div>
+              <div class="row-sm-12 listitemcont">
+                    <p *ngIf ="todolist.length == 0" class="noitem">No List Items</p>
+                  <ol style="list-style:none; margin-bottom:20px;"><br><p></p>
+                      <li *ngFor ="let listitem of todolist; let i = index; let staritem of Starlist;">
+                      <!--  <button (click)="StarListItemsVerify(listitem)">Verify</button> -->
+                      <p>
+                      <button type="button" class="btn btn-default btn-xs" (click)="DeleteListItems(i,listitem)">
+                          <span class="glyphicon glyphicon-trash"></span> Remove 
+                          </button>
+                          <button href="#" class="btn btn-info btn-xs" (click)="StarListItems(i, listitem)">
+                          <span class="glyphicon glyphicon-star-empty"></span> &nbsp; Star &nbsp; 
+                          </button>&nbsp; &nbsp;{{listitem}}<p>
+                      </li>
+                    </ol>
+                    
+                <br>   
+            </div>
+          </div>
+
+          <div class="col-sm-6 sideitem">
+              <div class="row-sm-12 starreditem">
+                <div class="row-sm-12 sideitemhead">Starred Items</div>
+                <div class="row-sm-12 sideitemcont">
+                    
+                        <p *ngIf ="Starlist.length == 1" class="noitem">No Starred Items</p>
+                    <ul style="list-style:none; margin-bottom:25px;">
+                      <p>
+                      <li *ngFor ="let staritem of Starlist; let i = index">
+                        <p>
+                        <button type="button" class="btn btn-default btn-xs" (click)="UnsStarListItems(i, staritem)">
+                          <span class="glyphicon glyphicon-remove-circle"></span> Unstar
+                        </button>&nbsp; &nbsp;{{staritem}}</p>
+                      </li>
+                    </ul>
+                    
+                </div>
+              </div>
+    
+              <div class="row-sm-12 deleteditem">
+                <div class="row-sm-12 sideitemhead">Deleted Items</div>
+                <div class="row-sm-12 sideitemcont">
+                    
+                        <p *ngIf ="Deletelist.length == 1" class="noitem">No Deleted Items</p>
+                    <ul style="list-style:none; margin-bottom:25px;">
+                        <li *ngFor ="let dellistitem of Deletelist;let i = index"><p>
+                            <button type="button" class="btn btn-default btn-xs" (click)="DeleteListItemsPerm(i,dellistitem)">
+                                <span class="glyphicon glyphicon-trash"></span> Remove 
+                              </button><button type="button" class="btn btn-default btn-xs" *ngIf ="but" (click)="AddDeletedListItems(i,dellistitem)">
+                                <span class="glyphicon glyphicon-refresh"></span> Restore
+                              </button>&nbsp; &nbsp;{{dellistitem}} </p>
+                        </li>
+                    </ul>
+                    
+                  </div>
+              </div>
+            </div>
+    </div>
+</div>
